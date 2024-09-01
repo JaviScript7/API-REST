@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']= 'mysql+pymysql://root:P455W0RD@localhost:3306/dbpythonapi'
+app.config['SQLALCHEMY_DATABASE_URI']= 'mysql+pymysql://root:P455W0RD@db_container:3306/dbpythonapi'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 db = SQLAlchemy(app)
@@ -90,4 +90,4 @@ def index():
     return jsonify({'Mensaje':'Bienvenido'})
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host="0.0.0.0", port="5000", debug = True)
