@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:  
+  db_container:
+    image: mysql
+    container_name: db_container
+    environment:
+      - MYSQL_ROOT_PASSWORD=P455W0RD
+      - MYSQL_DATABASE=dbpythonapi
+    networks:
+      - red1_api
+  
+  api_python:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - red1_api
+    depends_on:
+      - db_container
+
+#Si no tenemos creada nuestra red podemos usar estas lineas 
+networks:
+  red1_api:
+    driver: bridge    
